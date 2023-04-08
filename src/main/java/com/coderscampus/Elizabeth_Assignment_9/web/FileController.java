@@ -20,34 +20,30 @@ public class FileController {
 	public List<Recipe> recipesList = new ArrayList<>();
 
 	@GetMapping("/gluten-free")
-	public String glutenFree() throws IOException {
-		List<Recipe> glutenFree =  fileService.readCSV(recipesList).stream().filter(gluten -> gluten.getGlutenFree()).collect(Collectors.toList()); 
-		return glutenFree.toString();
+	public List<Recipe> glutenFree() throws IOException { 
+		return fileService.readCSV(recipesList).stream().filter(gluten -> gluten.getGlutenFree()).collect(Collectors.toList());
 	}
-	
+
 	@GetMapping("/vegan")
-	public String vegan() throws IOException {
-		List<Recipe> vegan = fileService.readCSV(recipesList).stream().filter(v -> v.getVegan()).collect(Collectors.toList());
-		return vegan.toString();
+	public List<Recipe> vegan() throws IOException {	
+		return fileService.readCSV(recipesList).stream().filter(v -> v.getVegan()).collect(Collectors.toList());
 	}
 	
 	@GetMapping("/vegan-and-gluten-free")
-	public String veganGluten() throws IOException {
-		List<Recipe> veganAndGlutenFree = fileService.readCSV(recipesList).stream().filter(v -> v.getVegan()).filter(g -> g.getGlutenFree())
+	public List<Recipe> veganGluten() throws IOException {
+		return fileService.readCSV(recipesList).stream().filter(v -> v.getVegan()).filter(g -> g.getGlutenFree())
 				.collect(Collectors.toList());
-		return veganAndGlutenFree.toString();
 	}
 	
 	@GetMapping("/vegetarian")
-	public String vegetarian() throws IOException {
-		List<Recipe> vegetarian = fileService.readCSV(recipesList).stream().filter(veg -> veg.getVegetarian()).collect(Collectors.toList());
-		return vegetarian.toString();
+	public List<Recipe> vegetarian() throws IOException {
+		return fileService.readCSV(recipesList).stream().filter(veg -> veg.getVegetarian()).collect(Collectors.toList());
 	}
 	
 	@GetMapping("/all-recipes")
-	public String allRecipes() throws IOException {
+	public List<Recipe> allRecipes() throws IOException {
 		
-		return fileService.readCSV(recipesList).toString();
+		return fileService.readCSV(recipesList);
 	}
 	
 }
