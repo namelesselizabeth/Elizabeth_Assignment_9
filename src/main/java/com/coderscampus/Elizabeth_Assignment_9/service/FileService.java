@@ -21,6 +21,15 @@ public class FileService {
 		return recipesList;
 	}
 	
+	@Autowired
+	public List<Recipe> getRecipesList() throws IOException {		
+		if(recipesList.size() > 0) {
+			return recipesList();
+		}
+		
+		return readCSV();
+	}
+	
 	@SuppressWarnings("deprecation")
 	public List<Recipe> readCSV() throws IOException {
 		

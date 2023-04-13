@@ -18,29 +18,29 @@ public class FileController {
 
 	@GetMapping("/gluten-free")
 	public List<Recipe> glutenFree() throws IOException { 
-		return fileService.readCSV().stream().filter(g -> g.getGlutenFree()).collect(Collectors.toList());
+		return fileService.getRecipesList().stream().filter(g -> g.getGlutenFree()).collect(Collectors.toList());
 	}
 
 	@GetMapping("/vegan")
 	public List<Recipe> vegan() throws IOException {	
-		return fileService.readCSV().stream().filter(v -> v.getVegan()).collect(Collectors.toList());
+		return fileService.getRecipesList().stream().filter(v -> v.getVegan()).collect(Collectors.toList());
 	}
 	
 	@GetMapping("/vegan-and-gluten-free")
 	public List<Recipe> veganGluten() throws IOException {
-		return fileService.readCSV().stream().filter(v -> v.getVegan()).filter(g -> g.getGlutenFree())
+		return fileService.getRecipesList().stream().filter(v -> v.getVegan()).filter(g -> g.getGlutenFree())
 				.collect(Collectors.toList());
 	}
 	
 	@GetMapping("/vegetarian")
 	public List<Recipe> vegetarian() throws IOException {
-		return fileService.readCSV().stream().filter(veg -> veg.getVegetarian()).collect(Collectors.toList());
+		return fileService.getRecipesList().stream().filter(veg -> veg.getVegetarian()).collect(Collectors.toList());
 	}
 	
 	@GetMapping("/all-recipes")
 	public List<Recipe> allRecipes() throws IOException {
 		
-		return fileService.readCSV();
+		return fileService.getRecipesList();
 	}
 	
 }
