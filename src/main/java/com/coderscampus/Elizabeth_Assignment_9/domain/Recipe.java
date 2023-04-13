@@ -1,5 +1,6 @@
 package com.coderscampus.Elizabeth_Assignment_9.domain;
 
+
 public class Recipe {
 	private Integer cookingMinutes;
 	private Boolean dairyFree;

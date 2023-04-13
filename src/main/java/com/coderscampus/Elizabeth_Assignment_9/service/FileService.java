@@ -3,16 +3,26 @@ package com.coderscampus.Elizabeth_Assignment_9.service;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.coderscampus.Elizabeth_Assignment_9.domain.Recipe;
 
 @Service
 public class FileService {
+	
+	private List<Recipe> recipesList = new ArrayList<>();
+
+	@Autowired
+	public List<Recipe> recipesList() {	
+		return recipesList;
+	}
+	
 	@SuppressWarnings("deprecation")
-	public List<Recipe> readCSV(List<Recipe> recipesList) throws IOException {
+	public List<Recipe> readCSV() throws IOException {
 		
 		Reader in = new FileReader("recipes.txt");
 	
@@ -46,10 +56,10 @@ public class FileService {
 			recipeData.setVegan(vegan);
 			recipeData.setVegetarian(vegetarian);
 			
-			recipesList.add(recipeData);
+			recipesList().add(recipeData);
 		}
 		
-		return recipesList;
+		return recipesList();
 	}
 	
 

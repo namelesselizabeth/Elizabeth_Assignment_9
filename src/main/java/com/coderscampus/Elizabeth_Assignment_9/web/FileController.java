@@ -1,7 +1,6 @@
 package com.coderscampus.Elizabeth_Assignment_9.web;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,34 +15,32 @@ public class FileController {
 	
 	@Autowired
 	private FileService fileService;
-	
-	public List<Recipe> recipesList = new ArrayList<>();
 
 	@GetMapping("/gluten-free")
 	public List<Recipe> glutenFree() throws IOException { 
-		return fileService.readCSV(recipesList).stream().filter(gluten -> gluten.getGlutenFree()).collect(Collectors.toList());
+		return fileService.readCSV().stream().filter(g -> g.getGlutenFree()).collect(Collectors.toList());
 	}
 
 	@GetMapping("/vegan")
 	public List<Recipe> vegan() throws IOException {	
-		return fileService.readCSV(recipesList).stream().filter(v -> v.getVegan()).collect(Collectors.toList());
+		return fileService.readCSV().stream().filter(v -> v.getVegan()).collect(Collectors.toList());
 	}
 	
 	@GetMapping("/vegan-and-gluten-free")
 	public List<Recipe> veganGluten() throws IOException {
-		return fileService.readCSV(recipesList).stream().filter(v -> v.getVegan()).filter(g -> g.getGlutenFree())
+		return fileService.readCSV().stream().filter(v -> v.getVegan()).filter(g -> g.getGlutenFree())
 				.collect(Collectors.toList());
 	}
 	
 	@GetMapping("/vegetarian")
 	public List<Recipe> vegetarian() throws IOException {
-		return fileService.readCSV(recipesList).stream().filter(veg -> veg.getVegetarian()).collect(Collectors.toList());
+		return fileService.readCSV().stream().filter(veg -> veg.getVegetarian()).collect(Collectors.toList());
 	}
 	
 	@GetMapping("/all-recipes")
 	public List<Recipe> allRecipes() throws IOException {
 		
-		return fileService.readCSV(recipesList);
+		return fileService.readCSV();
 	}
 	
 }
